@@ -158,12 +158,22 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'homeseer.hansen@gmail.com'
 EMAIL_HOST_PASSWORD = secrets.EMAIL
 
+'''
+AWS S3 Bucket Setup
+This overrides the static information above
+Additionally, it causes django pre-set pages (like admin) to no longer have style
+as it is now looking to the bucket for the css instead of it's actual location
+
 #S3 Buckets Config
-AWS_ACCESS_KEY_ID = secrets.AWS_S3_ACCESS_KEY_ID
+AWS_ACCESS_KEY_ID = 'AKIARWE24APHWVFW4SZ7'
 AWS_SECRET_ACCESS_KEY = secrets.AWS_S3_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'hansenjacobs-crm-bucket'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 #The below variables to use AWS required django-storages and boto3 to be installed
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
-AWS_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+'''
