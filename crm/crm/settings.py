@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'django_filters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +90,7 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'DEMO_TEST',
 #         'USER': 'postgres',
-#         'PASSWORD': secrets.postgres,
+#         'PASSWORD': secrets.POSTGRES,
 #         'HOST': 'localhost',
 #         'PORT': 5432,
 #     }
@@ -100,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'demo_1',
         'USER': 'admiral',
-        'PASSWORD': secrets.aws_postgres,
+        'PASSWORD': secrets.AWS_POSTGRES,
         'HOST': 'database-1.cb9b9zf82yum.us-east-2.rds.amazonaws.com',
         'PORT': 5432,
     }
@@ -155,4 +156,14 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'homeseer.hansen@gmail.com'
-EMAIL_HOST_PASSWORD = secrets.email
+EMAIL_HOST_PASSWORD = secrets.EMAIL
+
+#S3 Buckets Config
+AWS_ACCESS_KEY_ID = secrets.AWS_S3_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = secrets.AWS_S3_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = 'hansenjacobs-crm-bucket'
+
+#The below variables to use AWS required django-storages and boto3 to be installed
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
